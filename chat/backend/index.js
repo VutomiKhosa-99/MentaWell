@@ -28,8 +28,12 @@ const voiceID = "kgG7dCoKCfLehAPWkJOE";
 
 const app = express();
 app.use(express.json());
-app.use(cors(corsOptions));
-const port = 3000;
+// app.use(cors(corsOptions));
+app.use(cors({
+  origin: "http://localhost:5173",
+  // Other options if needed
+}));
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -157,6 +161,15 @@ const audioFileToBase64 = async (file) => {
   const data = await fs.readFile(file);
   return data.toString("base64");
 };
+
+// Enable CORS for a specific origin (in this case, regipro.vercel.app)
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 app.listen(port, () => {
   console.log(`Virtual Girlfriend listening on port ${port}`);
