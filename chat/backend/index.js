@@ -76,7 +76,7 @@ app.post("/chat", async (req, res) => {
     });
     return;
   }
-  if (!elevenLabsApiKey || !openai.apiKey === "-") {
+  if (!elevenLabsApiKey || openai.apiKey === "-") {
     res.send({
       messages: [
         {
