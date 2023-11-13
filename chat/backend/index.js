@@ -5,6 +5,7 @@ import voice from "elevenlabs-node";
 import express from "express";
 import { promises as fs } from "fs";
 import OpenAI from "openai";
+import corsOptions from "./config/corsOptions";
 dotenv.config();
 
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -18,7 +19,7 @@ const voiceID = "kgG7dCoKCfLehAPWkJOE";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 const port = 3000;
 
 app.get("/", (req, res) => {
