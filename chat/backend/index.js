@@ -7,7 +7,7 @@ import { promises as fs } from "fs";
 import OpenAI from "openai";
 dotenv.config();
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Your OpenAI API key here, I used "-" to avoid errors when the key is not set but you should not do that
