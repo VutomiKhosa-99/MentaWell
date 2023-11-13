@@ -1,11 +1,20 @@
-import { exec } from "child_process";
-import cors from "cors";
-import dotenv from "dotenv";
-import voice from "elevenlabs-node";
-import express from "express";
-import { promises as fs } from "fs";
-import OpenAI from "openai";
-import corsOptions from "./config/corsOptions";
+// import { exec } from "child_process";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// import voice from "elevenlabs-node";
+// import express from "express";
+// import { promises as fs } from "fs";
+// import OpenAI from "openai";
+// import corsOptions from "./config/corsOptions";
+const { exec } = require("child_process");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const voice = require("elevenlabs-node");
+const express = require("express");
+const fs = require("fs").promises;
+const OpenAI = require("openai");
+const corsOptions = require("./config/corsOptions");
+
 dotenv.config();
 
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
