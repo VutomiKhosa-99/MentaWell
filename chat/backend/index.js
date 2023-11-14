@@ -82,6 +82,8 @@ app.post("/chat", async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.header('xi-api-key', '2efcfdc326fc2b5bb2c7d942d2fafac7');
+
   const userMessage = req.body.message;
   if (!userMessage) {
     res.send({
@@ -178,14 +180,7 @@ const audioFileToBase64 = async (file) => {
   return data.toString("base64");
 };
 
-// Enable CORS for a specific origin (in this case, regipro.vercel.app)
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-//   next();
-// });
+
 
 app.listen(port, () => {
   console.log(`Virtual Girlfriend listening on port ${port}`);
