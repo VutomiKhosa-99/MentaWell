@@ -28,7 +28,7 @@ const openai = new OpenAI({
 });
 
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
-const voiceID = "21m00Tcm4TlvDq8ikWAM";
+const voiceID = "ua0pCYFkOyc9yyTAAXbo";
 
 const app = express();
 app.use(express.json());
@@ -45,6 +45,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/voices", async (req, res) => {
+  console.log(req.headers)
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
