@@ -28,7 +28,7 @@ const openai = new OpenAI({
 });
 
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
-const voiceID = "kgG7dCoKCfLehAPWkJOE";
+const voiceID = "21m00Tcm4TlvDq8ikWAM";
 
 const app = express();
 app.use(express.json());
@@ -150,8 +150,8 @@ app.post("/chat", async (req, res) => {
   if (messages.messages) {
     messages = messages.messages; // ChatGPT is not 100% reliable, sometimes it directly returns an array and sometimes a JSON object with a messages property
   }
-  console.log(messages)
-  return
+  // console.log(messages)
+  // return
   for (let i = 0; i < messages.length; i++) {
     const message = messages[i];
     // generate audio file
