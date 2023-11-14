@@ -6,9 +6,9 @@
 // import { promises as fs } from "fs";
 // import OpenAI from "openai";
 // import corsOptions from "./config/corsOptions";
+require("dotenv").config();
 const { exec } = require("child_process");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const voice = require("elevenlabs-node");
 const express = require("express");
 const fs = require("fs").promises;
@@ -17,7 +17,9 @@ const corsOptions = require("./config/corsOptions");
 const { logger, logEvents } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 
-dotenv.config();
+
+console.log(process.env.NODE_ENV);
+
 
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -43,6 +45,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/voices", async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.send(await voice.getVoices(elevenLabsApiKey));
 });
 
