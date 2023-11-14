@@ -14,6 +14,8 @@ const express = require("express");
 const fs = require("fs").promises;
 const OpenAI = require("openai");
 const corsOptions = require("./config/corsOptions");
+const { logger, logEvents } = require("./middleware/logger");
+const errorHandler = require("./middleware/errorHandler");
 
 dotenv.config();
 
@@ -28,11 +30,12 @@ const voiceID = "kgG7dCoKCfLehAPWkJOE";
 
 const app = express();
 app.use(express.json());
-// app.use(cors(corsOptions));
-app.use(cors({
-  origin: "http://localhost:5173",
-  // Other options if needed
-}));
+
+
+// app.use(cors({
+//   origin: "http://localhost:5173",
+//   // Other options if needed
+// }));
 const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
@@ -174,3 +177,11 @@ app.use((req, res, next) => {
 app.listen(port, () => {
   console.log(`Virtual Girlfriend listening on port ${port}`);
 });
+
+app.use(logger);
+
+app.use(cors(corsOptions));
+
+
+
+app.use(errorHandler);
