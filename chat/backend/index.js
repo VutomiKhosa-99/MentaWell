@@ -33,11 +33,6 @@ const voiceID = "ua0pCYFkOyc9yyTAAXbo";
 const app = express();
 app.use(express.json());
 
-
-// app.use(cors({
-//   origin: "http://localhost:5173",
-//   // Other options if needed
-// }));
 const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
@@ -82,7 +77,9 @@ app.post("/chat", async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.header('xi-api-key', '2efcfdc326fc2b5bb2c7d942d2fafac7');
+  res.header('accept', 'audio/mpeg');
+  res.header('xi-api-key', elevenLabsApiKey);
+  res.header( 'Content-Type', 'application/json');
 
   const userMessage = req.body.message;
   if (!userMessage) {
