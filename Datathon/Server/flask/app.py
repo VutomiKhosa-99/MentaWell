@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Load Excel data into a DataFrame
 df = pd.read_excel('../data-analysis/data.xlsx')
 
-# API endpoint to get the analyzed data
+# API endpoint 
 @app.route('/api/data', methods=['GET'])
 def get_data():
    
