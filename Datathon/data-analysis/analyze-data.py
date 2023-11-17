@@ -1,44 +1,34 @@
 import pandas as pd
+import json
 
-# Put Data In Our Dataframe
-df = pd.read_excel('data.xlsx')
-
-# test
-print(df.head())
+# Load Excel data into a DataFrame
+df = pd.read_csv('mock_data.csv')
 
 # Analyze data
 total_count = len(df)
-male_count = len(df[df['Gender'] == 'Male'])
-female_count = len(df[df['Gender'] == 'Female'])
+male_count = len(df[df['gender'].str.lower() == 'male'])
+female_count = len(df[df['gender'].str.lower() == 'female'])
 
-age_counts = df['Age'].value_counts().to_dict()
+age_counts = df['age'].value_counts().to_dict()
 
-prev_depressed_count = len(df[df['Previously Depressed'] == 'Yes'])
-currently_depressed_count = len(df[df['Currently Depressed'] == 'Yes'])
-never_depressed_count = len(df[df['Never Experienced Depression'] == 'Yes'])
+prev_depressed_count = len(df[df['treatment_received'] == 'TRUE'])
+currently_depressed_count = len(df[df['depression_score'] >= 50])
+never_depressed_count = len(df[df['treatment_received'] == 'FALSE'])
+
+# Store analysis results in a dictionary
+analysis_results = {
+    'total_count': total_count,
+    'male_count': male_count,
+    'female_count': female_count,
+    'age_counts': age_counts,
+    'prev_depressed_count': prev_depressed_count,
+    'currently_depressed_count': currently_depressed_count,
+    'never_depressed_count': never_depressed_count,
+}
 
 # Print analysis results
-print(f"Total Count: {total_count}")
-print(f"Male Count: {male_count}")
-print(f"Female Count: {female_count}")
+print(json.dumps(analysis_results, indent=2))
 
-print("\nAge Distribution:")
-for age, count in age_counts.items():
-    print(f"{age}: {count}")
-
-print(f"\nNumber of Previously Depressed: {prev_depressed_count}")
-print(f"Number of Currently Depressed: {currently_depressed_count}")
-print(f"Number Never Experienced Depression: {never_depressed_count}")
-
-# testing
-def get_analysis():
-    analysis_results = {
-        'total_count': total_count,
-        'male_count': male_count,
-        'female_count': female_count,
-        'age_counts': age_counts,
-        'prev_depressed_count': prev_depressed_count,
-        'currently_depressed_count': currently_depressed_count,
-        'never_depressed_count': never_depressed_count,
-    }
-    return jsonify(analysis_results)
+# Save analysis results to a JSON file
+with open('analysis_results.json', 'w') as json_file:
+    json.dump(analysis_results, json_file, indent=2)
