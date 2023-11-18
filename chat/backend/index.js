@@ -17,10 +17,11 @@ const corsOptions = require("./config/corsOptions");
 const { logger, logEvents } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 const ffmpegPath = require("ffmpeg-static");
-console.log("is this true " + ffmpegPath);
-import * as rhubarbLipSyncNode from "https://esm.run/rhubarb-lip-sync-node";
 
-console.log(rhubarbLipSyncNode);
+const rhubarbPath = 'C:\\Rhubarb-Lip-Sync-1.13.0-Windows\\rhubarb.exe';
+
+console.log("is this true " + ffmpegPath);
+
 
 console.log(process.env.NODE_ENV);
 
@@ -44,7 +45,8 @@ app.get("/", (req, res) => {
 
 app.get("/voices", async (req, res) => {
   console.log(req.headers);
-  res.setHeader("Access-Control-Allow-Origin", "https://w35kxf-5173.csb.app");
+  // res.setHeader("Access-Control-Allow-Origin", "https://w35kxf-5173.csb.app");
+  res.setHeader("Access-Control-Allow-Origin", " http://localhost:5173");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE",
@@ -72,14 +74,17 @@ const lipSyncMessage = async (message) => {
   );
   console.log(`Conversion done in ${new Date().getTime() - time}ms`);
   await execCommand(
-    `./bin/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`,
+    // `./bin/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`,
+    `${rhubarbPath} -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`,
   );
   // -r phonetic is faster but less accurate
   console.log(`Lip sync done in ${new Date().getTime() - time}ms`);
 };
 
 app.post("/chat", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://w35kxf-5173.csb.app");
+  // res.setHeader("Access-Control-Allow-Origin", "https://w35kxf-5173.csb.app");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); 
+   
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE",
@@ -123,7 +128,7 @@ app.post("/chat", async (req, res) => {
           animation: "Angry",
         },
         {
-          text: "You don't want to ruin Wawa Sensei with a crazy ChatGPT and ElevenLabs bill, right?",
+          text: "You don't want to ruin MentaWell with a crazy ChatGPT and ElevenLabs bill, right?",
           audio: await audioFileToBase64("audios/api_1.wav"),
           lipsync: await readJsonTranscript("audios/api_1.json"),
           facialExpression: "smile",
@@ -142,7 +147,7 @@ app.post("/chat", async (req, res) => {
       {
         role: "system",
         content: `
-        You are a virtual girlfriend.
+        You are a mental health specialist who has a deep knowledge in all types of mental health issues and you can always help beat all the types of mental health issues for your patient.
         You will always reply with a JSON array of messages. With a maximum of 3 messages.
         Each message has a text, facialExpression, and animation property.
         The different facial expressions are: smile, sad, angry, surprised, funnyFace, and default.
@@ -187,7 +192,7 @@ const audioFileToBase64 = async (file) => {
 };
 
 app.listen(port, () => {
-  console.log(`Virtual Girlfriend listening on port ${port}`);
+  console.log(`MentaWell is listening on port: ${port}`);
 });
 
 app.use(logger);
