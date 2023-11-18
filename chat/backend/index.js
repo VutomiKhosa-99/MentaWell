@@ -11,7 +11,8 @@ const { exec } = require("child_process");
 const cors = require("cors");
 const voice = require("elevenlabs-node");
 const express = require("express");
-const fs = require("fs").promises;
+const fsPromises = require("fs").promises;
+const path = require("path");
 const OpenAI = require("openai");
 const corsOptions = require("./config/corsOptions");
 const { logger, logEvents } = require("./middleware/logger");
@@ -148,7 +149,7 @@ app.post("/chat", async (req, res) => {
         role: "system",
         content: `
         You are a mental health specialist who has a deep knowledge in all types of mental health issues and you can always help beat all the types of mental health issues for your patient.
-        You will always reply with a JSON array of messages. With a maximum of 3 messages.
+        You will always reply with a valid JSON array of messages or responses. With a maximum of 3 messages or responses.
         Each message has a text, facialExpression, and animation property.
         The different facial expressions are: smile, sad, angry, surprised, funnyFace, and default.
         The different animations are: Talking_0, Talking_1, Talking_2, Crying, Laughing, Rumba, Idle, Terrified, and Angry. 
@@ -160,7 +161,9 @@ app.post("/chat", async (req, res) => {
       },
     ],
   });
+
   let messages = JSON.parse(completion.choices[0].message.content);
+  console.log(messages)
   if (messages.messages) {
     messages = messages.messages; // ChatGPT is not 100% reliable, sometimes it directly returns an array and sometimes a JSON object with a messages property
   }
@@ -182,12 +185,12 @@ app.post("/chat", async (req, res) => {
 });
 
 const readJsonTranscript = async (file) => {
-  const data = await fs.readFile(file, "utf8");
+  const data = await fsPromises.readFile(file, "utf8");
   return JSON.parse(data);
 };
 
 const audioFileToBase64 = async (file) => {
-  const data = await fs.readFile(file);
+  const data = await fsPromises.readFile(file);
   return data.toString("base64");
 };
 
