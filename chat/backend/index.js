@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 
 app.get("/voices", async (req, res) => {
   console.log(req.headers);
-  res.setHeader("Access-Control-Allow-Origin", "https://lk8lc2-5173.csb.app");
+  res.setHeader("Access-Control-Allow-Origin", "https://w35kxf-5173.csb.app");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE",
@@ -74,7 +74,7 @@ const lipSyncMessage = async (message) => {
 };
 
 app.post("/chat", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://lk8lc2-5173.csb.app");
+  res.setHeader("Access-Control-Allow-Origin", "https://w35kxf-5173.csb.app");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE",

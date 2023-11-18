@@ -4,8 +4,8 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
   "http://localhost:5173/",
-  "https://lk8lc2-5173.csb.app/",
-  "https://lk8lc2-5173.csb.app",
+  "https://w35kxf-5173.csb.app/",
+  "https://w35kxf-5173.csb.app",
 ];
 
 module.exports = allowedOrigins;
