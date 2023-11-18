@@ -24,7 +24,7 @@ constructor( private http: HttpClient) { }
 register(fullname: string, email: string, password :string): Observable<any> {
 
   return this.http.post(
-    baseUrl + 'users/signup',
+    baseUrl + 'api/users/signup',
     {
       fullname , email, password
     },
@@ -37,7 +37,7 @@ register(fullname: string, email: string, password :string): Observable<any> {
 
 loginUser(email: string, password: string): Observable<any> {
   const userData = { email, password };
-  return this.http.post(`${baseUrl}/login`, userData);
+  return this.http.post(`${baseUrl}api/users/login`, userData);
 }
 
 

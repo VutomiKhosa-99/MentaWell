@@ -1,7 +1,7 @@
 export const environment = {
   
     
-   baseUrl: 'http://localhost:4200/register/',
+   baseUrl: 'dpg-clbv4iscu2es738mut70-a.oregon-postgres.render.com/',
    
  
   };
