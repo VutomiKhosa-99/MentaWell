@@ -16,6 +16,11 @@ const OpenAI = require("openai");
 const corsOptions = require("./config/corsOptions");
 const { logger, logEvents } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
+const ffmpegPath = require("ffmpeg-static");
+console.log("is this true " + ffmpegPath);
+import * as rhubarbLipSyncNode from "https://esm.run/rhubarb-lip-sync-node";
+
+console.log(rhubarbLipSyncNode);
 
 console.log(process.env.NODE_ENV);
 
@@ -62,7 +67,7 @@ const lipSyncMessage = async (message) => {
   const time = new Date().getTime();
   console.log(`Starting conversion for message ${message}`);
   await execCommand(
-    `ffmpeg -y -i audios/message_${message}.mp3 audios/message_${message}.wav`,
+    `${ffmpegPath} -y -i audios/message_${message}.mp3 audios/message_${message}.wav`,
     // -y to overwrite the file
   );
   console.log(`Conversion done in ${new Date().getTime() - time}ms`);
