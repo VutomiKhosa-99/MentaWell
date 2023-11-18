@@ -1,39 +1,44 @@
-<div class="text">
-    <h1>Hey Karabo,</h1>
-    <h3>How are you feeling today?</h3>
+<div class="d-flex notification row">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell-fill col" viewBox="0 0 16 16">
+        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+      </svg>
 </div>
-<div class="container" style="text-align: center;">
+<div class="row text">
+    <h1>Hey Karabo,</h1>
+    <h3 class="mt-3">How are you feeling today?</h3>
+</div>
+<div class="container mt-2 mb-2" style="text-align: center;">
     <img class="img-responsive" src="assets\images\angry.png" style="padding-right: 20px;">
     <img class="img-responsive" src="assets\images\sad.png" style="padding-right: 20px;">
     <img class="img-responsive" src="assets\images\crying.png" style="padding-right: 20px;">
     <img class="img-responsive" src="assets\images\neutral.png" style="padding-right: 20px;">
     <img class="img-responsive" src="assets\images\happy.png">
 </div>
-<div class="chart">
+<div class="chart mx-2">
     <div class="line" [chart] = "lineChart">
 
     </div>
 </div>
-<div class = "cards row">
-    <div class="card col" style="margin-right: 1rem; text-align: center;">
+<div class = "carrds row">
+    <div class="carrd" style="margin-right: 1rem; text-align: center;">
         <img class="img1" src="assets\images\chat.png">
         <p class="textB"><b>Access your chat buddy</b></p>
 
     </div>
-    <div class="card col">
+    <div class="carrd">
         <img class="img2" src="assets\images\meditate.png">
         <p class="textC"><b>More Self love & Fulfilment</b></p>
     
     </div>
 </div>
-<div class = "cards row">
-    <div class="card" style="margin-right: 1rem;">
+<div class = "carrds row">
+    <div class="carrd" style="margin-right: 1rem;">
         <p class="textD"><b>Water Intake</b></p>
         <img class="img3" src="assets\images\water-drops.png">
         
     </div>
-    <div class="card">
-        <p class="textE"><b>Lets <br> Get <br> Active</b></p>
+    <div class="carrd">
+        <p class="textE"><b>Lets <br> Get <br> Active!</b></p>
         <img class="img4" src="assets\images\sports.png">
     </div>
 </div>

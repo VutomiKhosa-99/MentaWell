@@ -1,5 +1,13 @@
-.text {
-    margin-top: 2rem;
+.notification{
+    position:absolute; 
+    right:0;
+    svg{
+        margin: .5rem;
+    }
+}
+h1{
+    margin-top: 3rem;
+    margin-left: .5rem;
 }
 
 .line {
@@ -13,7 +21,7 @@ h3 {
     text-align: center;
 }
 
-.card {
+.carrd {
     width: 177px;
     height: 154px;
     margin-top: 1.3rem;
@@ -25,7 +33,7 @@ h3 {
     backdrop-filter: blur(20px);
 }
 
-.cards {
+.carrds {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,29 +58,29 @@ h3 {
     height: 56px;
     width: 56px;
 
-    margin-left: 6.5rem;
-    margin-top: -9rem;
+    margin-left: 6rem;
+    margin-top: -5.2rem;
 }
 
 .img4 {
 
     margin-top: -8.3rem;
-    margin-left: 4rem;
+    margin-left: 3.5rem;
 }
 
 .textB {
-    width: 116px;
-    height: 69px;
+    // width: 116px;
+    // height: 40px;
     flex-shrink: 0;
 
     color: #000;
     font-family: Lato;
-    font-size: 21px;
+    font-size: 23px;
     font-style: normal;
     font-weight: 700;
 
     margin-top: -1.6rem;
-    margin-left: 2rem;
+    margin-left: .5rem;
 
 }
 
@@ -88,7 +96,7 @@ h3 {
     line-height: normal;
 
     margin-top: -8.8rem;
-    margin-left: 1rem;
+    
 }
 
 .textD {
@@ -103,8 +111,8 @@ h3 {
     font-weight: 700;
     line-height: normal;
 
-    margin-top: 2rem;
-    margin-left: .8rem;
+    margin-top: 3rem;
+    margin-left: .5rem;
 }
 
 .textE {
@@ -115,5 +123,6 @@ h3 {
     font-weight: 700;
     line-height: normal;
 
-    margin-left: .8rem;
+    margin-left: .5rem;
+    margin-top: 2rem;
 }
