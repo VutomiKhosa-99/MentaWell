@@ -13,8 +13,6 @@ const signup = async (req, res) => {
     const { fullName, email, password } =
       req.body;
 
-    
-
    const data = {
     fullName,
     email,
