@@ -22,7 +22,7 @@ var corsOptions = {
 const db = require("./models");
 db.sequelize.sync()
   .then(() => {
-    console.log("Connected to the Vocaselect database!");
+    console.log("Connected to the MentaWell Server!");
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
@@ -60,12 +60,12 @@ app.use('/api/users', userRoutes)
 
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3500;
 app.listen(PORT, () => {
   console.log(`Server is connected on port ${PORT}.`);
 });
 
 //simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Vocaselect" });
+  res.json({ message: "MentaWell" });
 });

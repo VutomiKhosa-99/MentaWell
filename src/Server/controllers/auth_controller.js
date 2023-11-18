@@ -154,7 +154,7 @@ const getUserById = async (req, res) => {
 const updateUserById = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { fullName, email, dob, city, studentgrade } = req.body;
+    const { fullName, email } = req.body;
     const data = {
       fullName,
       email,
