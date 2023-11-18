@@ -17,9 +17,7 @@ const corsOptions = require("./config/corsOptions");
 const { logger, logEvents } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 
-
 console.log(process.env.NODE_ENV);
-
 
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -40,11 +38,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/voices", async (req, res) => {
-  console.log(req.headers)
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  console.log(req.headers);
+  res.setHeader("Access-Control-Allow-Origin", "https://lk8lc2-5173.csb.app");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.send(await voice.getVoices(elevenLabsApiKey));
 });
 
@@ -61,25 +62,28 @@ const lipSyncMessage = async (message) => {
   const time = new Date().getTime();
   console.log(`Starting conversion for message ${message}`);
   await execCommand(
-    `ffmpeg -y -i audios/message_${message}.mp3 audios/message_${message}.wav`
+    `ffmpeg -y -i audios/message_${message}.mp3 audios/message_${message}.wav`,
     // -y to overwrite the file
   );
   console.log(`Conversion done in ${new Date().getTime() - time}ms`);
   await execCommand(
-    `./bin/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
+    `./bin/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`,
   );
   // -r phonetic is faster but less accurate
   console.log(`Lip sync done in ${new Date().getTime() - time}ms`);
 };
 
 app.post("/chat", async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.header('accept', 'audio/mpeg');
-  res.header('xi-api-key', elevenLabsApiKey);
-  res.header( 'Content-Type', 'application/json');
+  res.setHeader("Access-Control-Allow-Origin", "https://lk8lc2-5173.csb.app");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.header("accept", "audio/mpeg");
+  res.header("xi-api-key", elevenLabsApiKey);
+  res.header("Content-Type", "application/json");
 
   const userMessage = req.body.message;
   if (!userMessage) {
@@ -150,8 +154,8 @@ app.post("/chat", async (req, res) => {
   if (messages.messages) {
     messages = messages.messages; // ChatGPT is not 100% reliable, sometimes it directly returns an array and sometimes a JSON object with a messages property
   }
-  console.log(messages)
-  return
+  console.log(messages);
+  // return;
   for (let i = 0; i < messages.length; i++) {
     const message = messages[i];
     // generate audio file
@@ -177,8 +181,6 @@ const audioFileToBase64 = async (file) => {
   return data.toString("base64");
 };
 
-
-
 app.listen(port, () => {
   console.log(`Virtual Girlfriend listening on port ${port}`);
 });
@@ -186,7 +188,5 @@ app.listen(port, () => {
 app.use(logger);
 
 app.use(cors(corsOptions));
-
-
 
 app.use(errorHandler);
