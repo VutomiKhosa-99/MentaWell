@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
+import { ChartModule } from 'angular-highcharts';
+import { FormsModule } from "@angular/forms";
+import { PickerModule } from "@ctrl/ngx-emoji-mart";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +16,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartModule,
+    PickerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
