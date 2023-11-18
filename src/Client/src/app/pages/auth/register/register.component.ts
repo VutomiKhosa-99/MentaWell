@@ -24,9 +24,9 @@ export class RegisterComponent {
 
   // registerUser(firstname: string, lastname: string, email: string, password :string ) {
   onSubmit() {
-    const { fullname, email, password } = this.formData;
+    const { fullName, email, password } = this.formData;
 
-    this.authservice.register(fullname, email, password).subscribe(
+    this.authservice.register(fullName, email, password).subscribe(
         (response) => {
           // Handle successful registration, e.g., redirect to login page
           console.log(response);
@@ -45,6 +45,6 @@ export class RegisterComponent {
             alert("Registration failed. Please try again later.")
         }
       );
-      console.log(this.formData)
+      console.log("the data is here   ",this.formData)
   }
 }

@@ -21,12 +21,12 @@ constructor( private http: HttpClient) { }
 
 // for registration
 
-register(fullname: string, email: string, password :string): Observable<any> {
+register(fullName: string, email: string, password :string): Observable<any> {
 
   return this.http.post(
     baseUrl + 'api/users/signup',
     {
-      fullname , email, password
+      fullName , email, password
     },
     httpOptions
   );

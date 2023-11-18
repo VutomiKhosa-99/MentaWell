@@ -1,0 +1,19 @@
+
+/* .header{
+    background-color: brown;
+    margin-top:350px;
+    
+    height: 20px;
+} */
+.container {
+    width: 374px;
+    height: 426px;
+    flex-shrink: 0;
+    margin-top:350px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    
+    background: linear-gradient(140deg, rgba(232, 232, 232, 0.32) 1.8%, rgba(142, 202, 205, 0.24) 90.75%);
+    
+    backdrop-filter: blur(20px);
+}

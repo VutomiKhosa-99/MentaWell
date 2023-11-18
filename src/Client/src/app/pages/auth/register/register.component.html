@@ -1,24 +1,54 @@
-<form class="container">
-  <div class="mb-3">
-    <label for="exampleInputFullName1" class="form-label">Full Name</label>
-    <input type="FullName" class="form-control" id="FullName1" aria-describedby="FullNameHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
 
 
-  <button type="submit" class="btn btn-primary">Register</button>
 
-  <div class="container2" >
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
+  <form class="container" name="form" (ngSubmit)=" onSubmit()" #f="ngForm">
+    <div class="form-group">
+      <div class="mb-3">
+        <label for="exampleInputFullName1" class="form-label">Full Name</label>
+        <input
+        type="text"
+        class="form-control"
+        name="fullName"
+        [(ngModel)]="formData.fullName"
+        required
+        minlength="3"
+        maxlength="20"
+        #fullName="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && fullName.errors }"
+      />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="formData.email"
+              required
+              email
+              #email="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+            />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+        type="password"
+        class="form-control"
+        name="password"
+        [(ngModel)]="formData.password"
+        required
+        minlength="8"
+        #password="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+      />
+      </div>
 
-  
 
+      <button type="submit" class="btn btn-primary">Register</button>
+
+      <div class="container2">
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </div>
+  </form>
