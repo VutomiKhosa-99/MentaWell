@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 
 const routes: Routes = [
 
-  
+  // { path: 'register', component: RegisterComponent },
   {path : 'register' , component: RegisterComponent },
 
   //to make default home page
