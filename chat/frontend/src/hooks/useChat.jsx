@@ -1,7 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const backendUrl = "https://mentawell-api.onrender.com";
-// const backendUrl = "http://localhost:3000";
+// const backendUrl = "https://mentawell-api.onrender.com";
+const backendUrl = "http://localhost:3000";
+// const backendUrl = "https://w35kxf-3000.csb.app";
+
 
 const ChatContext = createContext();
 
